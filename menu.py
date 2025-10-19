@@ -1,9 +1,7 @@
 class UniversityMenu:
-    """Display main university system menu"""
     @staticmethod
     def display():
 
- 
         print("A - Admin System")
         print("S - Student System") 
         print("X - Exit")
@@ -50,7 +48,7 @@ class AdminMenu:
         print("\n--- Admin System ---")
         print("C - Clear database")
         print("G - Group students by grade")
-        print("P - Partition students (Pass/Fail)")
+        print("P - Partition students (Pass/Fail/Not Enrolled)")
         print("R - Remove student by ID")
         print("S - Show all students")
         print("X - Back to University menu")

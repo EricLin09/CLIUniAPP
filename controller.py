@@ -109,19 +109,21 @@ class AdminController:
         return grouped
     
     def partition_pass_fail(self):
-
         students = self.database.load_all()
         passed = []
         failed = []
+        not_enrolled = []
         
         for student in students:
-            if student.is_passing():
+            if not student.subjects:  # No subjects enrolled
+                not_enrolled.append(student)
+            elif student.get_average_mark() >= 50:  # Passing
                 passed.append(student)
-            else:
+            else:  # Failing
                 failed.append(student)
         
-        return passed, failed
-    
+        return passed, failed, not_enrolled
+        
     def remove_student(self, student_id):
 
         return self.database.remove(student_id)

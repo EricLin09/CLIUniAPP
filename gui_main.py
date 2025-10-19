@@ -11,10 +11,6 @@ class GUIUniApp:
         self.root.title("GUIUniApp - University System")
         self.root.geometry("600x500")  # Changed * to x
         self.root.resizable(True, True)
-    
-    # Rest of your initialization code...
-        
-        # Set background color for the main window
         self.root.configure(bg="#f0f0f0")
         
         self.current_student = None

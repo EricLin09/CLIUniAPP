@@ -21,37 +21,35 @@ def run_student_system():
             if success:
                 print(f"email and password formats acceptable")
                 print(f"Welcome {result.name}!")
-                time.sleep(1)  # Add delay before showing next menu
+                time.sleep(1)  
                 run_subject_enrolment_system(result)
             else:
                 print(result)
-                time.sleep(1)  # Add delay after error message
+                time.sleep(1) 
         
         elif choice == 'r':
-            # Register
+
             print("Student Sign Up")
             email = input("Email: ").strip()
             password = input("Password: ").strip()
-            
-            # Validate format first
+
             if not controller.validate_email(email):
                 print("Incorrect email or password format")
                 time.sleep(0.7)
                 print("Email format: firstname.lastname@university.com")
-                time.sleep(1)  # Add delay after error
+                time.sleep(1)
                 continue
             
             if not controller.validate_password(password):
                 print("Incorrect email or password format")
                 time.sleep(0.7)
                 print("Password format: Must start with uppercase letter, contain at least 5 letters, followed by 3+ digits")
-                time.sleep(1)  # Add delay after error
+                time.sleep(1)
                 continue
-            
-            # Check if student exists
+
             if controller.database.find_by_email(email):
                 print("Student already exists")
-                time.sleep(1)  # Add delay after error
+                time.sleep(1)
                 continue
             
             name = input("Name: ").strip()
@@ -61,13 +59,13 @@ def run_student_system():
                 print("email and password formats acceptable")
                 time.sleep(0.7)
                 print(f"Enrolling Student {name}")
-                time.sleep(1.2)  # Add delay after success message
+                time.sleep(1.2)
         
         elif choice == 'x':
             break
         else:
             print("Invalid option. Please try again.")
-            time.sleep(1)  # Add delay after error
+            time.sleep(1)
 
 
 def run_subject_enrolment_system(student):
@@ -79,22 +77,22 @@ def run_subject_enrolment_system(student):
         choice = SubjectEnrolmentMenu.display()
         
         if choice == 'e':
-            # Enroll in subject
+
             success, result = controller.enroll_subject(student)
             if success:
                 print(f"Enrolling in Subject-{result.id}")
                 time.sleep(0.7)
                 print(f"You are now enrolled in {len(student.subjects)} out of 4 subjects")
-                time.sleep(1)  # Add delay after enrollment
+                time.sleep(1) 
             else:
                 print(result)
-                time.sleep(1)  # Add delay after error
+                time.sleep(1) 
         
         elif choice == 'r':
-            # Remove subject
+
             if not student.subjects:
                 print("No subjects enrolled")
-                time.sleep(1)  # Add delay
+                time.sleep(1)  
                 continue
                 
             subject_id = input("Remove subject by ID: ").strip()
@@ -103,13 +101,13 @@ def run_subject_enrolment_system(student):
                 print(f"Dropping Subject-{subject_id}")
                 time.sleep(0.7)
                 print(f"You are now enrolled in {len(student.subjects)} out of 4 subjects")
-                time.sleep(1)  # Add delay after removal
+                time.sleep(1) 
             else:
                 print(f"Subject {subject_id} not found")
-                time.sleep(1)  # Add delay after error
+                time.sleep(1) 
         
         elif choice == 's':
-            # Show enrolled subjects
+
             subjects = controller.show_subjects(student)
             if not subjects:
                 print("Showing 0 subjects")
@@ -141,27 +139,27 @@ def run_subject_enrolment_system(student):
             success, message = controller.change_password(student, new_password)
             if success:
                 print(message)
-                time.sleep(1)  # Add delay after success
+                time.sleep(1)
             else:
                 print(message)
-                time.sleep(1)  # Add delay after error
+                time.sleep(1) 
         
         elif choice == 'x':
             break
         else:
             print("Invalid option. Please try again.")
-            time.sleep(1)  # Add delay after error
+            time.sleep(1)
 
 
 def run_admin_system():
-    """Handle admin operations - no login required"""
+
     controller = AdminController()
     
     while True:
         choice = AdminMenu.display()
         
         if choice == 's':
-            # Show all students
+
             students = controller.show_all_students()
             if not students:
                 print("< Nothing to Display >")
@@ -169,10 +167,10 @@ def run_admin_system():
                 print(f"\nStudent List")
                 for student in students:
                     print(f"{student.id} :: {student.name} --> Email: {student.email}")
-            time.sleep(1)  # Add delay after showing students
+            time.sleep(1)
         
         elif choice == 'g':
-            # Group students by grade
+
             grouped = controller.group_by_grade()
             has_students = any(students for students in grouped.values())
             
@@ -187,16 +185,17 @@ def run_admin_system():
                         print(", ".join([f"{s.name} :: {s.id} --> GRADE: {grade} - MARK: {s.get_average_mark():.2f}" 
                                        for s in students]), end="")
                         print(" ]")
-            time.sleep(1)  # Add delay after grouping
+            time.sleep(1)  
         
         elif choice == 'p':
-            # Partition students into PASS/FAIL
-            passed, failed = controller.partition_pass_fail()
+
+            passed, failed, NotEnrolled = controller.partition_pass_fail()
             
-            if not passed and not failed:
+            if not passed and not failed and not NotEnrolled:
                 print("< Nothing to Display >")
+                
             else:
-                print("\nPASS/FAIL Partition")
+                print("\nPASS/FAIL/Not Enrolled Partition")
                 
                 if passed:
                     print(f"PASS --> [", end="")
@@ -209,7 +208,15 @@ def run_admin_system():
                     print(", ".join([f"{s.name} :: {s.id} --> GRADE: {s.get_grade()} - MARK: {s.get_average_mark():.2f}" 
                                    for s in failed]), end="")
                     print(" ]")
-            time.sleep(1)  # Add delay after partition
+
+                if NotEnrolled:
+
+                    print(f"Not Enrolled --> [", end="")
+                    print(", ".join([f"{s.name} :: {s.id}"
+                                   for s in NotEnrolled]), end="")
+                    print(" ]")
+
+            time.sleep(1)
         
         elif choice == 'r':
 
