@@ -34,6 +34,15 @@ class Student:
         subject = Subject()
         self.subjects.append(subject)
         return True, subject
+
+    def enroll_subject(self):
+        """Enroll in a new subject with unique ID"""
+        if len(self.subjects) >= self.MAX_SUBJECTS:
+            return False, f"Students are allowed to enrol in {self.MAX_SUBJECTS} subjects only"
+
+        subject = Subject(existing_subjects=self.subjects)
+        self.subjects.append(subject)
+        return True, subject
     
     def remove_subject(self, subject_id):
 

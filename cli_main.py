@@ -34,15 +34,22 @@ def run_student_system():
             password = input("Password: ").strip()
 
             if not controller.validate_email(email):
-                print("Incorrect email or password format")
+                print("Incorrect email format")
                 time.sleep(0.7)
                 print("Email format: firstname.lastname@university.com")
                 time.sleep(1)
                 continue
             
             if not controller.validate_password(password):
-                print("Incorrect email or password format")
+                print("Incorrect password format")
                 time.sleep(0.7)
+                print("Password format: Must start with uppercase letter, contain at least 5 letters, followed by 3+ digits")
+                time.sleep(1)
+                continue
+
+            if not controller.validate_email(email) and not controller.validate_password(password):
+                print("Both email and password formats are invalid.")
+                print("Email format: firstname.lastname@university.com")
                 print("Password format: Must start with uppercase letter, contain at least 5 letters, followed by 3+ digits")
                 time.sleep(1)
                 continue
