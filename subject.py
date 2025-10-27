@@ -9,16 +9,9 @@ class Subject:
         self.mark = random.randint(25, 100)
         self.grade = self.calculate_grade()
     
-    def generate_id(self, existing_subjects=None):
+    def generate_id(self):
 
-        if existing_subjects:
-            existing_ids = {subject.id for subject in existing_subjects}
-            while True:
-                new_id = f"{random.randint(1, 999):03d}"
-                if new_id not in existing_ids:
-                    return new_id
-        else:
-            return f"{random.randint(1, 999):03d}"
+        return f"{random.randint(1, 999):03d}"
     
     def calculate_grade(self):
 
@@ -34,5 +27,4 @@ class Subject:
             return "Z"
     
     def __str__(self):
-        """String representation of subject"""
         return f"Subject ID: {self.id}, Mark: {self.mark}, Grade: {self.grade}"

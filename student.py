@@ -17,32 +17,26 @@ class Student:
     def generate_id(self, database=None):
 
         if database:
-            # Check for uniqueness in database
+
             while True:
                 new_id = f"{random.randint(1, 999999):06d}"
                 if not database.find_by_id(new_id):
                     return new_id
         else:
-            # No database check
-            return f"{random.randint(1, 999999):06d}"
-    
-    def enroll_subject(self):
 
+            return f"{random.randint(1, 999999):06d}"
+
+    def enroll_subject(self):
         if len(self.subjects) >= self.MAX_SUBJECTS:
             return False, f"Students are allowed to enrol in {self.MAX_SUBJECTS} subjects only"
         
-        subject = Subject()
-        self.subjects.append(subject)
-        return True, subject
+        existing_ids = {s.id for s in self.subjects}
 
-    def enroll_subject(self):
-        """Enroll in a new subject with unique ID"""
-        if len(self.subjects) >= self.MAX_SUBJECTS:
-            return False, f"Students are allowed to enrol in {self.MAX_SUBJECTS} subjects only"
-
-        subject = Subject(existing_subjects=self.subjects)
-        self.subjects.append(subject)
-        return True, subject
+        while True:
+            subject = Subject()
+            if subject.id not in existing_ids:
+                self.subjects.append(subject)
+                return True, subject
     
     def remove_subject(self, subject_id):
 
