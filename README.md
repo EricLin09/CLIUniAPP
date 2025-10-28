@@ -25,8 +25,8 @@ A student cannot enroll in two subjects sharing the same numeric ID (e.g., `CSC1
 
 | Component | Version / Recommendation |
 |------------|--------------------------|
-| **Python** | 3.9 or higher |
-| **Libraries** | Standard Library (no external dependencies) |
+| **Python** | 3.0 |
+| **Libraries** | Standard Library |
 | **OS** | macOS, Windows, or Linux |
 | **Optional GUI** | Tkinter (bundled with Python) |
 
