@@ -10,7 +10,6 @@ class StudentController:
 
     def __init__(self):
         self.database = Database()
-        self.current_student = None
     
     def validate_email(self, email):
 
@@ -115,11 +114,11 @@ class AdminController:
         not_enrolled = []
         
         for student in students:
-            if not student.subjects:  # No subjects enrolled
+            if not student.subjects:
                 not_enrolled.append(student)
-            elif student.get_average_mark() >= 50:  # Passing
+            elif student.get_average_mark() >= 50:  
                 passed.append(student)
-            else:  # Failing
+            else:  
                 failed.append(student)
         
         return passed, failed, not_enrolled

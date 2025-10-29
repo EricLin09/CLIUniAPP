@@ -98,7 +98,7 @@ class GUIUniApp:
         tk.Label(title_frame, text=f"Student ID: {self.current_student.id}", 
                 font=("Arial", 11), bg="#1565C0", fg="white").pack()
         
-        # Enrollment info
+  
         info_frame = tk.Frame(self.root, bg="#E3F2FD", pady=10, relief=tk.RIDGE, bd=2)
         info_frame.pack(fill=tk.X, pady=10, padx=20)
         
@@ -124,7 +124,7 @@ class GUIUniApp:
                             activebackground="#1565C0", activeforeground="white")
         view_btn.grid(row=0, column=1, padx=10, pady=10)
         
-        # Remove subject button - Orange with better contrast
+ 
         remove_btn = tk.Button(btn_frame, text="Remove Subject", 
                               font=("Arial", 12, "bold"), bg="#FB8C00", fg="black",
                               width=20, height=2, command=self.handle_remove_subject,
@@ -132,7 +132,7 @@ class GUIUniApp:
                               activebackground="#F57C00", activeforeground="white")
         remove_btn.grid(row=1, column=0, padx=10, pady=10)
         
-        # Change password button - Purple with better contrast
+
         pwd_btn = tk.Button(btn_frame, text="Change Password", 
                            font=("Arial", 12, "bold"), bg="#8E24AA", fg="black",
                            width=20, height=2, command=self.handle_change_password,
@@ -140,7 +140,7 @@ class GUIUniApp:
                            activebackground="#7B1FA2", activeforeground="white")
         pwd_btn.grid(row=1, column=1, padx=10, pady=10)
         
-        # Logout button - Red with better contrast
+
         logout_btn = tk.Button(self.root, text="LOGOUT", 
                               font=("Arial", 12, "bold"), bg="#E53935", fg="black",
                               width=15, command=self.handle_logout,
@@ -149,7 +149,7 @@ class GUIUniApp:
         logout_btn.pack(pady=20)
     
     def handle_enroll(self):
-        """Handle subject enrollment"""
+        
         if len(self.current_student.subjects) >= 4:
             self.show_exception_window("Enrollment Limit Reached", 
                                        "Students are allowed to enrol in 4 subjects only!\n" +
@@ -165,13 +165,13 @@ class GUIUniApp:
                               f"Mark: {result.mark}\n" +
                               f"Grade: {result.grade}\n" +
                               f"Current Average: {self.current_student.get_average_mark():.2f}")
-            self.show_enrolment_window()  # Refresh
+            self.show_enrolment_window()  
         else:
             self.show_exception_window("Enrollment Failed", result)
     
 
     def show_subject_window(self):
-        """Display window showing all enrolled subjects"""
+   
         if not self.current_student.subjects:
             messagebox.showinfo("No Subjects", "You are not enrolled in any subjects yet.")
             return
@@ -238,7 +238,7 @@ class GUIUniApp:
 
 
     def handle_remove_subject(self):
-        """Handle subject removal"""
+       
         if not self.current_student.subjects:
             messagebox.showinfo("No Subjects", "You have no subjects to remove.")
             return
@@ -270,7 +270,7 @@ class GUIUniApp:
             if success:
                 messagebox.showinfo("Success", f"Subject {subject_id} removed successfully!")
                 dialog.destroy()
-                self.show_enrolment_window()  # Refresh
+                self.show_enrolment_window()  
             else:
                 messagebox.showerror("Error", f"Subject {subject_id} not found!")
         

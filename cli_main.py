@@ -12,7 +12,6 @@ def run_student_system():
         choice = StudentMenu.display()
         
         if choice == 'l':
-            # Login
             print("Student Sign In")
             email = input("Email: ").strip()
             password = input("Password: ").strip()
@@ -255,7 +254,6 @@ def run_admin_system():
 
 
 def main():
-    """Main entry point for CLIUniApp"""
     print("=" * 50)
     print(" " * 15 + "University Menu")
     print("=" * 50)

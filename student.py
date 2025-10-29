@@ -14,17 +14,12 @@ class Student:
         self.password = password
         self.subjects = []
     
-    def generate_id(self, database=None):
+    def generate_id(self, database):
 
-        if database:
-
-            while True:
-                new_id = f"{random.randint(1, 999999):06d}"
-                if not database.find_by_id(new_id):
-                    return new_id
-        else:
-
-            return f"{random.randint(1, 999999):06d}"
+        while True:
+            new_id = f"{random.randint(1, 999999):06d}"
+            if not database.find_by_id(new_id):
+                return new_id
 
     def enroll_subject(self):
         if len(self.subjects) >= self.MAX_SUBJECTS:
