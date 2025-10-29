@@ -39,12 +39,11 @@ A student cannot enroll in two subjects sharing the same numeric ID (e.g., `CSC1
    ```bash
    git clone https://github.com/yourusername/student-enrollment-system.git
    cd student-enrollment-system
-2. **Running instructions**
-   For CLI
+2. **Running instructions** for CLI
    ```bash
    python cli_main.py
    ```
-   For GUI
+3. **Running instructions** for GUI
    ```bash
    python gui_main.py
    ```
