@@ -18,10 +18,10 @@ It provides modules for:
 - **Admin showing all students**  (`controller.py`, 'cli_main.py')
 - **Admin grouping all students**  by Grade  (`controller.py`, 'cli_main.py')
 - **Admin grouping all students**  by pass or fail (`controller.py`, 'cli_main.py')
-- **Admin grouping all students by Grade**  (`controller.py`, 'cli_main.py')
-- 
+- **Admin delete one student** (`controller.py`, 'cli_main.py')
+- **Admin clear the database** (`controller.py`, 'cli_main.py')
 Each subject is assigned a random 3-digit ID (`001`–`999`) during creation.  
-A student cannot enroll in two subjects sharing the same numeric ID (e.g., `CSC101` and `MKT101`).
+A student cannot enroll in two subjects sharing the same numeric ID.
 
 ---
 
@@ -41,8 +41,8 @@ A student cannot enroll in two subjects sharing the same numeric ID (e.g., `CSC1
 1. **Clone or copy** the project folder to your computer.
 
    ```bash
-   git clone https://github.com/yourusername/student-enrollment-system.git
-   cd student-enrollment-system
+   git clone https://github.com/EricLin09/CLIUniAPP.git
+
 2. **Running instructions** for CLI
    ```bash
    python cli_main.py
