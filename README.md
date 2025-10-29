@@ -43,7 +43,8 @@ A student cannot enroll in two subjects sharing the same numeric ID (e.g., `CSC1
    For CLI
    ```bash
    python cli_main.py
-
+   ```
    For GUI
    ```bash
    python gui_main.py
+   ```
